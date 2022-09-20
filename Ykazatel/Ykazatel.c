@@ -2,6 +2,7 @@
 #include <stdio.h>
 #define N 1000000
 #define L 10
+#define M 15
 int a[N];
 
 void Redak(int i)
@@ -29,21 +30,31 @@ void Dina()
 }
 
 void arr_make(int arr[], int min, int max) {
-	int i;
-
-	srand(time(NULL));
-
-	for (i = 0; i < L; i++)
-		arr[i] = rand() % (max + min);
+	int* minyk = &min;
+	int* maxyk = &max;
+	for (int i = 0; i < L; i++) {
+		arr[i] = rand() % (*maxyk + *minyk);
+		printf("%d ", arr[i] );
+	}
+	printf("\n");
 }
 
-void Piramida(int m)
+void Piramida(int arr[])
 {
+	int i = 0;
 	int k = 1;
-	for (int i = 0; i < m; i++)
+	while (i<M)
 	{
-		
+		for (int j = 0; j < k; j++)
+		{
+			arr[i] = i;
+			printf("%d ", arr[i]);
+			i++;
+		}
+		k++;
+		printf("\n");
 	}
+	
 }
 
 int main(void)
@@ -83,18 +94,20 @@ B:
 		goto B;
 	}
 	case 3: {
-		int arrI[L], i;
+		int arrI[L],max,min;
+		printf("\n¬ведите максимальное число \n");
+		scanf_s("%d", &max);
+		printf("\n¬ведите минимальное число \n");
+		scanf_s("%d", &min);
 
-		arr_make(arrI, 7,40);
-
-		for (i = 0; i < L; i++)
-			printf("%d ", arrI[i]);
-		printf("\n");
+		arr_make(arrI, min,max);
 		goto B;
 	}
 
 	case 4: {
-
+		int arrL[M];
+		Piramida(arrL);
+		goto B;
 	}
 	default:
 		break;
